@@ -1,10 +1,8 @@
 name: Metrics
 on:
-  # 매일 자정(00:00 UTC)에 자동 실행
+  # 매일 자정 자동 실행
   schedule: [{cron: "0 0 * * *"}]
-  # 수동 실행 버튼 활성화 (지금 바로 테스트용)
   workflow_dispatch:
-  # main 브랜치 푸시 시 실행
   push: {branches: ["master", "main"]}
 
 jobs:
@@ -13,23 +11,28 @@ jobs:
     permissions:
       contents: write
     steps:
+      # 1️⃣ 첫 번째 이미지 생성 (라인 차트) -> github-metrics-lines.svg
       - uses: lowlighter/metrics@latest
         with:
-          # [필수] Settings > Secrets에 등록한 토큰
           token: ${{ secrets.METRICS_TOKEN }}
-
-          # 생성될 파일 이름
-          filename: github-metrics.svg
-
+          filename: github-metrics-lines.svg # 파일 이름 다름
           base: ""
+          repositories_affiliations: owner, collaborator, organization_member
+          
+          # 라인 차트만 켜기
+          plugin_lines: yes
+          plugin_lines_history_limit: 1
+          plugin_lines_repositories_limit: 100
+          plugin_lines_sections: history
 
+      # 2️⃣ 두 번째 이미지 생성 (잔디) -> github-metrics-calendar.svg
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          filename: github-metrics-calendar.svg # 파일 이름 다름
+          base: ""
           repositories_affiliations: owner, collaborator, organization_member
 
-          # [설정] 라인 수 그래프 옵션
-          plugin_lines: yes
-          plugin_lines_history_limit: 1        # 1년치 데이터 조회
-          plugin_lines_repositories_limit: 100 # 최대 100개 리포지토리까지 분석 (넉넉하게)
-          plugin_lines_sections: history       # 히스토리 그래프 표시
-
+          # 잔디만 켜기
           plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year # 반년치 표시
+          plugin_isocalendar_duration: half-year
