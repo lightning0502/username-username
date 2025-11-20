@@ -18,6 +18,8 @@ jobs:
           filename: github-metrics-lines.svg # 파일 이름 다름
           base: ""
           repositories_affiliations: owner, collaborator, organization_member
+
+          config_display: large
           
           # 라인 차트만 켜기
           plugin_lines: yes
@@ -32,6 +34,8 @@ jobs:
           filename: github-metrics-calendar.svg # 파일 이름 다름
           base: ""
           repositories_affiliations: owner, collaborator, organization_member
+
+          config_display: large
 
           # 잔디만 켜기
           plugin_isocalendar: yes
