@@ -30,3 +30,6 @@ jobs:
           plugin_lines_history_limit: 1        # 1년치 데이터 조회
           plugin_lines_repositories_limit: 100 # 최대 100개 리포지토리까지 분석 (넉넉하게)
           plugin_lines_sections: history       # 히스토리 그래프 표시
+
+          plugin_isocalendar: yes
+          plugin_isocalendar_duration: half-year # 반년치 표시
