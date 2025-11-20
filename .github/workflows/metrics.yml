@@ -1,0 +1,29 @@
+name: Metrics
+on:
+  # 24시간마다(자정) 자동 실행
+  schedule: [{cron: "0 0 * * *"}]
+  # 수동 실행 버튼 활성화 (테스트용)
+  workflow_dispatch:
+  # 메인 브랜치에 푸시될 때 실행
+  push: {branches: ["master", "main"]}
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          # [중요] 이 토큰을 Settings에 등록해야 해 (아래 설명 참고)
+          token: ${{ secrets.METRICS_TOKEN }}
+
+          # 생성될 이미지 파일 이름
+          filename: github-metrics.svg
+
+          # [옵션] 여기서 원하는 기능을 켜고 끌 수 있어
+          base: ""
+          plugin_lines: yes # 라인 수 그래프 켜기
+          plugin_lines_history_limit: 1
+          plugin_lines_repositories_limit: 4
+          plugin_lines_sections: repositories, history
