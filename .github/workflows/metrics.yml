@@ -1,10 +1,10 @@
 name: Metrics
 on:
-  # 24시간마다(자정) 자동 실행
+  # 매일 자정(00:00 UTC)에 자동 실행
   schedule: [{cron: "0 0 * * *"}]
-  # 수동 실행 버튼 활성화 (테스트용)
+  # 수동 실행 버튼 활성화 (지금 바로 테스트용)
   workflow_dispatch:
-  # 메인 브랜치에 푸시될 때 실행
+  # main 브랜치 푸시 시 실행
   push: {branches: ["master", "main"]}
 
 jobs:
@@ -15,15 +15,18 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
-          # [중요] 이 토큰을 Settings에 등록해야 해 (아래 설명 참고)
+          # [필수] Settings > Secrets에 등록한 토큰
           token: ${{ secrets.METRICS_TOKEN }}
 
-          # 생성될 이미지 파일 이름
+          # 생성될 파일 이름
           filename: github-metrics.svg
 
-          # [옵션] 여기서 원하는 기능을 켜고 끌 수 있어
           base: ""
-          plugin_lines: yes # 라인 수 그래프 켜기
-          plugin_lines_history_limit: 1
-          plugin_lines_repositories_limit: 4
-          plugin_lines_sections: repositories, history
+
+          repositories_affiliations: owner, collaborator, organization_member
+
+          # [설정] 라인 수 그래프 옵션
+          plugin_lines: yes
+          plugin_lines_history_limit: 1        # 1년치 데이터 조회
+          plugin_lines_repositories_limit: 100 # 최대 100개 리포지토리까지 분석 (넉넉하게)
+          plugin_lines_sections: history       # 히스토리 그래프 표시
