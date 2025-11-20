@@ -27,18 +27,6 @@ jobs:
           plugin_lines_repositories_limit: 33
           plugin_lines_sections: history
 
-          extras_css: |
-            /* "Lines of code pushed" 제목 숨기기 */
-            h2.field { display: none !important; }
-            
-            /* "Diff history" 범례 숨기기 */
-            .lines .field { display: none !important; }
-            
-            /* 그래프를 감싸는 영역의 여백 제거 (왼쪽으로 당기기) */
-            .lines { margin: 0 !important; }
-            
-            /* 전체 컨테이너 여백 조정 */
-            .field { margin: 0 !important; }
 
       # 2️⃣ 두 번째 이미지 생성 (잔디) -> github-metrics-calendar.svg
       - uses: lowlighter/metrics@latest
