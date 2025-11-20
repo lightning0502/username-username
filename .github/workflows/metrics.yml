@@ -20,6 +20,7 @@ jobs:
           repositories_affiliations: owner, collaborator, organization_member
 
           config_display: large
+          config_scale: 2
           
           # 라인 차트만 켜기
           plugin_lines: yes
@@ -36,6 +37,8 @@ jobs:
           repositories_affiliations: owner, collaborator, organization_member
 
           config_display: large
+          config_scale: 2
+          
 
           # 잔디만 켜기
           plugin_isocalendar: yes
