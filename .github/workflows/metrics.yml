@@ -19,8 +19,6 @@ jobs:
           base: ""
           repositories_affiliations: owner, collaborator
 
-          config_display: large
-          
           # 라인 차트만 켜기
           plugin_lines: yes
           plugin_lines_history_limit: 1
