@@ -1,7 +1,7 @@
 name: Metrics
 on:
-  # 매일 자정 자동 실행
-  schedule: [{cron: "0 0 * * *"}]
+  # 매일 자정 자동 실행, 한국 시간 오전 9시 쯤
+  schedule: [{cron: "0 0 * * *"}] 
   workflow_dispatch:
   push: {branches: ["master", "main"]}
 
