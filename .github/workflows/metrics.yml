@@ -27,6 +27,16 @@ jobs:
           plugin_lines_repositories_limit: 33
           plugin_lines_sections: history
 
+          extras_css: |
+            .row section:first-child { display: none !important; }
+            .row section:last-child { 
+              width: 100% !important; 
+              max-width: 100% !important; 
+              flex: 0 0 100% !important;
+            }
+            .lines { margin: 0 !important; padding: 0 !important; }
+            h2, h3, .field { display: none !important; }
+
 
       # 2️⃣ 두 번째 이미지 생성 (잔디) -> github-metrics-calendar.svg
       - uses: lowlighter/metrics@latest
