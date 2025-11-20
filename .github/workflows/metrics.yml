@@ -17,7 +17,7 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           filename: github-metrics-lines.svg # 파일 이름 다름
           base: ""
-          repositories_affiliations: owner, collaborator, organization_member
+          repositories_affiliations: owner, collaborator
 
           config_display: large
           
@@ -36,7 +36,7 @@ jobs:
           token: ${{ secrets.METRICS_TOKEN }}
           filename: github-metrics-calendar.svg # 파일 이름 다름
           base: ""
-          repositories_affiliations: owner, collaborator, organization_member
+          repositories_affiliations: owner, collaborator
 
           config_display: large
           
